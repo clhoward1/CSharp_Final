@@ -1,0 +1,56 @@
+﻿@model C_SharpFinal.Models.StudentWorkerModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Student Worker Form</title>
+    </head>
+
+    <body>
+        <h1>Hello Student Worker!</h1>
+        <h2>Caculator for Weekly Pay</h2>
+
+    <form asp-action="Index" method="post">
+        <div asp-validation-summary="All"></div>
+        <div>
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name"/>
+        </div>
+
+        <div>
+            <label asp-for="Id">ID</label>
+            <input asp-for="Id"/>
+        </div>
+
+        <!--Can't have wrong input if the form won't let you-->
+        <div>
+            <label asp-for="HourlyRate">Hourly Pay Rate</label>
+            <input asp-for="HourlyRate" type="number" step="any" min="7.25" max="14.75"/>
+        </div>
+
+        <div>
+            <label asp-for="HoursWorked">Hours Worked this Week</label>
+            <input asp-for="HoursWorked" type="number" min="1" max="15"/>
+        </div>
+
+        <div>
+            <p>@ViewBag.StudentBadge.ToString()</p>
+        </div>
+
+        <div>
+            <label>Calculated Gross Pay</label>
+            <input value="$@ViewBag.WeeklySalary.ToString()" readonly />
+        </div>
+
+        <button type="submit">Calculate</button>
+        <a asp-action="Index">Clear</a>
+    </form>
+
+    </body>
+</html>
